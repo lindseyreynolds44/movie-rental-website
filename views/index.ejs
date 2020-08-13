@@ -1,0 +1,64 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+
+  <body class="selection" page="index">
+      <div id="filter-box">
+
+        <div id="genre-box" class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Genre
+          </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div id="genre-box">
+          Filter by Genre:
+          <select id="filter-genre" name="genre"></select>
+        </div>
+        <div id="rating-box">
+          Filter by Rating:
+          <select id="filter-rating">
+            <option value="">Select One</option>
+            <option value="3">Above 3</option>
+            <option value="5">Above 5</option>
+            <option value="7">Above 7</option>
+          </select>
+        </div>
+        <button id="reset-filters" class="btn btn-outline-warning my-2 my-sm-0" type="submit">Reset Filters</button>
+      </div>
+
+
+    <main>
+      <hr />
+      <div id="selected-movie-container">
+        <!-- Display movie poster -->
+        <div id="selected-image"></div>
+        <div id="movie-detail">
+          <p id="title"><span id="title-content"></span></p>
+          <p id="synopsis">Synopsis: <span id="synopsis-content"></span></p>
+          <p id="rating">TMDB Rating: <span id="rating-content"></span></p>
+          <p id="genre">Genre: <span id="genre-content"></span></p>
+          <p id="release">Release Date: <span id="release-content"></span></p>
+          <p id="price">Price: <span id="price-content"></span></p>
+          <button id="add-movie" class="btn btn-success">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+      <div id="featured-header"></div>
+      <div id="resultsContainer"></div>
+    </main>
+    <%- include("partials/bootstrap-footer.ejs") %> 
+  </body>
+  <script>
+    originalResults = <%- JSON.stringify(resultArray) %>;
+    featuredResults = <%- JSON.stringify(resultArray) %>;
+    console.log(originalResults);
+  </script>
+</html>

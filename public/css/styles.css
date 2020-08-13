@@ -1,0 +1,494 @@
+html {
+  margin: 0 auto;
+}
+
+/*********************************************************************/
+/*                         Nav Bar Styles 
+/*********************************************************************/
+
+#logo {
+  color: red;
+  font-size: 2.4rem;
+}
+
+#logo-large {
+  color: red;
+  font-size: 4rem;
+}
+
+#logo2 {
+  color: red;
+  font-size: 5.5rem;
+  display: flex;
+  align-content: space-around;
+  margin: -1em 0 -2em -1em;
+  padding: 1em 0em 0em 2em;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+}
+
+.nav-item {
+  font-size: 1.2rem;
+}
+
+.navbar-nav {
+  height: 100% !important;
+  display: flex !important;
+
+  justify-content: flex-end !important;
+  font-size: 2em !important;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*********************************************************************/
+/*                      Sign In Page Styles 
+/*********************************************************************/
+
+/* @import url('https://fonts.googleapis.com/css?family=Numans');*/
+
+html,
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/movie-wall.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+}
+
+.container {
+  height: 100%;
+  align-content: center;
+}
+
+.card {
+  height: 370px;
+  margin-top: 250px;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-header h3 {
+  color: white;
+  text-align:center;
+}
+
+.form-group {
+  display:flex;
+  justify-content:center;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: red;
+}
+
+.social_icon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.card-header h3 {
+  color: white;
+}
+
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: red;
+  color: black;
+  border: 0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+  color: white;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.login_btn {
+  color: black;
+  background-color: red;
+  width: 100px;
+}
+
+.login_btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.links {
+  color: white;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+/*********************************************************************/
+/*                      Styles Home and Index Page
+/*********************************************************************/
+
+.home {
+  text-align: center;
+  background-image: url("../img/movie-wall.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  color: white;
+  font-size: 2rem;
+  padding: 20px; 
+}
+
+#home-signIn {
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+}
+
+#home-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+
+#home-form {
+  display: inline-block;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 50%;
+  font-size: 2rem;
+  padding: 15px 15px 20px 15px;
+}
+
+#home-form input[type="text"] {
+  font-size: 1.6rem;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#home-form input[type="text"]:focus {
+  background-color: lightblue;
+}
+
+.home-button {
+  background-color: red;
+  color: white;
+  font-size: 1.6rem;
+  padding: 5px;
+}
+
+.selection {
+  background-color: black;
+  color: gold;
+}
+
+#selection-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#search-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+#search-form input[type="text"]:focus {
+  background-color: lightblue;
+}
+
+#search-form input[type="text"] {
+  font-size: 1rem;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#filter-box {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+#genre-box,
+#rating-box {
+  padding: 10px;
+}
+
+#resultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+
+
+.poster-box {
+  background-color: black;
+  color: white;
+  margin: 20px;
+  min-width: 200px;
+}
+
+
+.movie-poster {
+  height: 300px;
+  width:200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  transition: transform 0.2s;
+  line-height: 150px;
+  text-align: center;
+}
+
+
+.movie-poster:hover {
+  transform: scale(1.15);
+}
+
+#selected-movie-container {
+  display: flex;
+  background-color: black;
+}
+
+#selected-image {
+  padding: 30px;
+}
+
+#movie-detail {
+  margin: 10px;
+  padding: 40px;
+  font-size: 1.5rem;
+}
+
+#add-movie {
+  color: black;
+}
+
+#title {
+  color: magenta;
+  font-size:1.8rem;
+}
+
+#synopsis {
+  color: gold;
+}
+
+#synopsis-content {
+  color: mediumturquoise;
+  padding-left: 20px;
+}
+
+#rating,
+#genre,
+#release {
+  color: darkseagreen;
+}
+
+#rating-content,
+#genre-content,
+#release-content {
+  color: white;
+  padding-left: 20px;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+.nav-wrapper {
+  display: flex;
+  background-color: none;
+}
+
+/*********************************************************************/
+/*                        Styles for Admin Page 
+/*********************************************************************/
+#admin-title {
+  color: red;
+}
+
+#admin-content {
+  margin: 0 auto;
+}
+
+.admin-container {
+  height: 500px;
+  width: 80%;
+  border-radius: 10px;
+  margin: auto;
+  overflow-y: auto;
+  background-color: white;
+  opacity: 0.85;
+}
+
+#reports-container {
+  height: 250px;
+}
+
+#db-results,
+#admin-search-results {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+}
+
+#admin-db-btn,
+#admin-search-form {
+  display: flex;
+  justify-content: center;
+}
+
+#admin-db-table tr:nth-child(even),
+#admin-search-table tr:nth-child(even) {
+  background-color: lightgray;
+}
+
+#admin-search-text {
+  width: 200px;
+  margin: 10px;
+}
+
+#admin-search-table {
+  width: 90%;
+}
+
+#admin-search-table td {
+  height: 10px;
+}
+
+#admin-db-table td,
+#admin-db-table th,
+#admin-search-table td,
+#admin-search-table th {
+  padding: 12px;
+}
+
+.admin-btn {
+  margin: 15px;
+}
+
+/*********************************************************************/
+/*                        Styles for Shopping Cart
+/*********************************************************************/
+
+#cart-header {
+  color: red;
+  text-align: center;
+}
+
+.home-shopping {
+  background-image: url("../img/movie-wall.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat !important; */
+}
+
+#cart-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Table listing items in cart */
+#cart-table {
+    border: 1px black solid;
+    width: 800px;
+}
+
+#table-header {
+    background-color: #4F565C;
+    font-size: 1.2em;
+    color: white;
+}
+
+.table-row {
+    border: 1px black solid;
+    background-color: white;
+    opacity: .8;
+}
+
+td {
+  padding: 15px 15px;
+}
+
+.row-item {
+  font-size: 1.3em;
+}
+
+/* Box on the right, displaying cart totals */
+#cart-total {
+    border: 1px black solid;
+    background-color: white; 
+    opacity: .8;
+    padding-top: 60px;
+    width: 300px;
+    text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  text-align: left;
+  padding: 10px;
+}
+
+.total-label, #subtotal, #shipping {
+  font-size: 1.3em;
+  padding-bottom: 20px;
+}
+
+#total-label2, #total {
+  font-size: 25px;
+  font-weight:bold;
+  margin-top: 10px;
+}
+
+#empty-label {
+  color: red;
+  text-align: center;
+}
+
+#refresh-cart-btn {
+  margin: 20px;
+}
+
+#cart-total a {
+  text-decoration: none;
+  color: white;
+}
+
+
