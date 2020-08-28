@@ -9,27 +9,29 @@ app.use(express.urlencoded({ extended: true })); //to be able to parse POST para
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 
-app.use(session({
+app.use(
+  session({
     secret: "top secret!",
     resave: true,
-    saveUninitialized: true
-}));
+    saveUninitialized: true,
+  })
+);
 
-app.use(express.urlencoded({extended: true})); //to be able to parse POST parameters
+app.use(express.urlencoded({ extended: true })); //to be able to parse POST parameters
 
 // Routes
 // Root route for sign in page
 app.get("/", homeController.displaySignInPage);
 
 // Route to display main page of our website, once user is logged in
-app.get("/index", isAuthenticated, homeController.displayIndexPage); // for testing purpose
+app.get("/index", homeController.displayIndexPage); // for testing purpose
 
 // When user clicks "sign in" on the sign in page, using
 // their username and password (Be sure to use POST in .ejs file)
-app.post("/signIn", async function(req, res){
+app.post("/signIn", async function (req, res) {
   let username = req.body.username;
   let password = req.body.password;
-  
+
   // Check if this username and password exist in our database
   if (await verifyLoginInfo(req, username, password)) {
     res.redirect("/index");
@@ -40,7 +42,7 @@ app.post("/signIn", async function(req, res){
 });
 
 // Display the new user registration page
-app.get("/registrationPage", function(req, res){
+app.get("/registrationPage", function (req, res) {
   res.render("register");
 });
 
@@ -54,24 +56,28 @@ app.post("/createAccount", homeController.createAccount);
 app.get("/search", isAuthenticated, homeController.displaySearchResults); // for testing without authentication
 
 // Route when user clicks the "logout" button
-app.get("/logout", function(req, res){
-   req.session.destroy();
-   res.redirect("/");
+app.get("/logout", function (req, res) {
+  req.session.destroy();
+  res.redirect("/");
 });
 
 // Route when user adds or deletes movies from their cart
 app.get("/updateCart", isAuthenticated, homeController.updateCart);
 
-// Route to display the shopping cart page 
+// Route to display the shopping cart page
 app.get("/shoppingCart", isAuthenticated, homeController.displayCartPage);
 
 // Display the admin page
-app.get("/adminPage", isAuthenticated, isAdmin, function(req, res){
-  res.render("admin", {page_name: "adminPage"});
+app.get("/adminPage", isAuthenticated, isAdmin, function (req, res) {
+  res.render("admin", { page_name: "adminPage" });
 });
 
 // Called from ADMIN page in order to display a table of the movies from the DB
-app.get("/api/getMoviesFromDB", isAuthenticated, homeController.getMoviesFromDB);
+app.get(
+  "/api/getMoviesFromDB",
+  isAuthenticated,
+  homeController.getMoviesFromDB
+);
 
 // Called from ADMIN page to add or delete from our DB
 app.get("/api/updateDB", isAuthenticated, homeController.updateDB);
@@ -93,13 +99,11 @@ app.listen(process.env.PORT, process.env.IP, function () {
   console.log("API_KEY:", process.env.API_KEY);
 });
 
-
 /*******************************************************************************
  *                           Authentication Functions                         *
  ******************************************************************************/
 
 async function verifyLoginInfo(req, username, password) {
-  
   let result = await checkUsername(username);
   let hashedPwd = "";
 
@@ -114,7 +118,7 @@ async function verifyLoginInfo(req, username, password) {
     req.session.name = result[0].user_id;
     // 1 for admin, 0 for regular user
     req.session.admin = result[0].admin_privledges;
-    return true; 
+    return true;
   } else {
     return false;
   }
@@ -123,10 +127,10 @@ async function verifyLoginInfo(req, username, password) {
 function checkUsername(username) {
   let sql = "SELECT * from user WHERE username = ?";
   return new Promise((resolve, reject) => {
-      pool.query(sql, [username], (err, rows, fields) => {
-        if (err) throw err;
-        resolve(rows);
-      }); // query
+    pool.query(sql, [username], (err, rows, fields) => {
+      if (err) throw err;
+      resolve(rows);
+    }); // query
   }); // promise
 }
 
@@ -139,17 +143,17 @@ function checkPassword(password, hashedValue) {
 }
 
 function isAuthenticated(req, res, next) {
-    if(!req.session.authenticated) {
-        res.redirect('/');
-    } else {
-        next();
-    }
+  if (!req.session.authenticated) {
+    res.redirect("/");
+  } else {
+    next();
+  }
 }
 
 function isAdmin(req, res, next) {
-    if(!req.session.admin) {
-        res.redirect('/index');
-    } else {
-        next();
-    }
+  if (!req.session.admin) {
+    res.redirect("/index");
+  } else {
+    next();
+  }
 }

@@ -121,7 +121,7 @@ exports.updateCart = async (req, res) => {
     case "add":
       // Insert movie into the movie table
       sql =
-        "REPLACE INTO movie (movie_id, title, release_date, description, image_url, rating) VALUES (?,?,?,?,?,?)";
+        "INSERT IGNORE INTO movie (movie_id, title, release_date, description, image_url, rating) VALUES (?,?,?,?,?,?)";
       sqlParams = [
         movie_id,
         title,
@@ -133,15 +133,15 @@ exports.updateCart = async (req, res) => {
       await callDB(sql, sqlParams);
       // Insert genres into genre table
       sql =
-        "REPLACE INTO genre (genre_id, movie_id, genre_name) VALUES (?, ?, ?)";
+        "INSERT IGNORE INTO genre (genre_id, movie_id, genre_name) VALUES (?, ?, ?)";
       for (genreName of genres) {
         let genre_id = await getGenreIDFromName(genreName);
         sqlParams = [genre_id, movie_id, genreName];
         await callDB(sql, sqlParams);
       }
-      
+
       // Insert movie into the cart table
-      sql = "REPLACE INTO cart (user_id, movie_id) VALUES (?, ?)";
+      sql = "INSERT IGNORE INTO cart (user_id, movie_id) VALUES (?, ?)";
       sqlParams = [user_id, movie_id];
       await callDB(sql, sqlParams);
       res.send({ status: 200 });
@@ -210,7 +210,7 @@ exports.updateDB = async (req, res) => {
     case "add":
       // Insert movie into the movie table
       sql =
-        "REPLACE INTO movie (movie_id, title, image_url, rating, " +
+        "INSERT IGNORE INTO movie (movie_id, title, image_url, rating, " +
         "release_date, description, price) VALUES (?, ?, ?, ?, ?, ?, ?);";
       sqlParams = [
         movie_id,
@@ -240,7 +240,7 @@ exports.updateDB = async (req, res) => {
   // Add all genres into the genre table that are associated with the movie_id
   if (action == "add") {
     sql =
-      "REPLACE INTO genre (genre_id, movie_id, genre_name) VALUES (?, ?, ?);";
+      "INSERT IGNORE INTO genre (genre_id, movie_id, genre_name) VALUES (?, ?, ?);";
     genreArr.forEach(async (genre) => {
       let genreID = await getGenreIDFromName(genre);
       sqlParams = [genreID, movie_id, genre];
@@ -377,7 +377,7 @@ async function getGenreNames() {
 
 /**
  * Matches a movie's genreIDs to the API's genre names and returns the
- * corresponding name 
+ * corresponding name
  * @param {Int} genreIDs
  * @param {Object} genreNames
  */
@@ -426,8 +426,6 @@ function getGenreIDFromName(genreName) {
   });
 }
 
-
-
 /*******************************************************************************
  *                            Database Functions                               *
  ******************************************************************************/
@@ -448,32 +446,33 @@ async function getFeaturedMovies() {
       let movieObjArray = [];
       let movieID = 0;
       let index = -1;
+      let row = 0;
 
-      // Loop through all the rows returned from the query
-      rows.forEach(async (record) => {
+      while (index < 10) {
         // If this is a new movie ID, create a movie object for it
-        if (movieID != record.movie_id) {
-          movieID = record.movie_id;
+        if (movieID != rows[row].movie_id) {
+          movieID = rows[row].movie_id;
           let movie = {
-            title: record.title,
-            imageUrl: record.image_url,
-            rating: record.rating,
-            movieID: record.movie_id,
-            release_date: record.release_date, // formats date to locale's style
-            overview: record.description,
+            title: rows[row].title,
+            imageUrl: rows[row].image_url,
+            rating: rows[row].rating,
+            movieID: rows[row].movie_id,
+            release_date: rows[row].release_date, // formats date to locale's style
+            overview: rows[row].description,
             genres: [],
-            price: record.price,
+            price: rows[row].price,
           };
           index++;
           movieObjArray.push(movie);
-          movieObjArray[index].genres.push(record.genre_name);
+          movieObjArray[index].genres.push(rows[row].genre_name);
 
           // Otherwise, this is a repeat movie_id, with a new genre
         } else {
           // Add the genre from this record to this movie's genre list
-          movieObjArray[index].genres.push(record.genre_name);
+          movieObjArray[index].genres.push(rows[row].genre_name);
         }
-      });
+        row++;
+      }
       // Send back all ten movies in JSON format, including their details
       resolve(movieObjArray);
     });
