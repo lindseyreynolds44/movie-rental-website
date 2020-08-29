@@ -11,17 +11,17 @@ footer {
 /*********************************************************************/
 
 #logo {
-  color: red;
+  color: #d70303;
   font-size: 2.4rem;
 }
 
 #logo-large {
-  color: red;
+  color: #d70303;
   font-size: 4rem;
 }
 
 #logo2 {
-  color: red;
+  color: #d70303;
   font-size: 5.5rem;
   display: flex;
   align-content: space-around;
@@ -52,20 +52,9 @@ footer {
 }
 
 /*********************************************************************/
-/*                      NEW Index Page Styles 
-/*********************************************************************/
-
-#filters-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-/*********************************************************************/
 /*                      Sign In Page Styles 
 /*********************************************************************/
 
-html,
 body {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../img/movie-wall.jpg");
@@ -101,7 +90,7 @@ body {
 .social_icon span {
   font-size: 60px;
   margin-left: 10px;
-  color: red;
+  color: #d70303;
 }
 
 .social_icon span:hover {
@@ -121,7 +110,7 @@ body {
 
 .input-group-prepend span {
   width: 50px;
-  background-color: red;
+  background-color: #d70303;
   color: black;
   border: 0 !important;
 }
@@ -144,7 +133,7 @@ input:focus {
 
 .login_btn {
   color: black;
-  background-color: red;
+  background-color: #d70303;
   width: 100px;
 }
 
@@ -162,11 +151,10 @@ input:focus {
 }
 
 /*********************************************************************/
-/*                      Styles Home and Index Page
+/*                         Index Page Styles
 /*********************************************************************/
 
 .selection {
-  background-color: black;
   color: gold;
 }
 
@@ -189,7 +177,7 @@ input:focus {
 
 #search-form input[type="text"] {
   font-size: 1rem;
-  border: 2px solid red;
+  border: 2px solid #d70303;
   border-radius: 10px;
   padding: 10px;
 }
@@ -224,7 +212,7 @@ input:focus {
 }
 
 .poster-box {
-  background-color: black;
+  background-color: #2d2d2d;
   color: white;
   margin: 20px;
   min-width: 200px;
@@ -248,7 +236,7 @@ input:focus {
 
 #selected-movie-container {
   display: flex;
-  background-color: black;
+  background-color: #1a1a1a;
 }
 
 #selected-image {
@@ -266,7 +254,7 @@ input:focus {
 }
 
 #title {
-  color: red;
+  color: #d70303;
   font-size: 1.8rem;
 }
 
@@ -295,6 +283,11 @@ input:focus {
   color: white;
 }
 
+.btn-danger {
+  background-color: #c20000;
+  border-color: white;
+}
+
 .links a {
   margin-left: 4px;
 }
@@ -308,7 +301,7 @@ input:focus {
 /*                        Styles for Admin Page 
 /*********************************************************************/
 #admin-title {
-  color: red;
+  color: #d70303;
 }
 
 #admin-content {
@@ -375,7 +368,7 @@ input:focus {
 /*********************************************************************/
 
 #cart-header {
-  color: red;
+  color: #d70303;
   text-align: center;
 }
 
@@ -458,12 +451,20 @@ li {
 }
 
 #empty-label {
-  color: red;
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 15px;
+  width: 40%;
+  padding: 30px;
+  margin-bottom: 200px;
   text-align: center;
 }
 
 #refresh-cart-btn {
-  margin: 20px;
+  text-decoration: none;
+}
+
+#table-header th a {
+  color: black;
 }
 
 #cart-total a {

@@ -9,49 +9,50 @@
     <br><br>
 
     <div id="cart-content">
-        
-        <table id="cart-table">
-            <tr id="table-header">
-                <th>Poster</th>
-                <th>Movie ID</th>
-                <th>Title</th>
-                <th>Price ($)</th>
-                <th>Remove</th>
-            </tr>
-            <% let subtotal = 0; %>
-            <% cartContents.forEach((item) => { %>
-                <tr class="table-row">
-                    <td><img height="200" src="<%= item.image_url %>" alt="movie image"></td>
-                    <td class="cart-movie-id row-item"><%= item.movie_id %></td>
-                    <td class="row-item"><%= item.title %></td>
-                    <td class="cart-movie-price row-item"><%= item.price %></td>
-                    <td><button type="button" class="btn btn-danger cart-delete-btn">Delete</button></td>
-                </tr>
-                <% subtotal += item.price; %>
-            <% }); 
-                subtotal = subtotal.toFixed(2);
-                let shipping = 5.99; 
-                let total = parseFloat(subtotal) + parseFloat(shipping);
-                total = total.toFixed(2); %>
-        </table>
-        <section id="cart-total">
-            <h2 class="total-header">Cart Total</h2>
-            <hr>
             
-            <% if(cartContents.length == 0) { %>
-                <br>
-                <h4 id="empty-label">Your Cart is Empty</h4>
-            <% } else { %>
-                <h4 id="empty-label"></h4>
+        <% if(cartContents.length == 0) { %>
+            <br>
+            <h4 id="empty-label">Your Cart is Empty</h4>
+        <% } else { %>
+            <table id="cart-table">
+                <tr id="table-header">
+                    <th>Poster</th>
+                    <th>Movie ID</th>
+                    <th>Title</th>
+                    <th>Price ($)</th>
+                    <th><button id="refresh-cart-btn" class="btn btn-light"><a href="/shoppingCart">Update Cart</a></button></th>
+                </tr>
+                <% let subtotal = 0; %>
+                <% cartContents.forEach((item) => { %>
+                    <tr class="table-row">
+                        <td><img height="200" src="<%= item.image_url %>" alt="movie image"></td>
+                        <td class="cart-movie-id row-item"><%= item.movie_id %></td>
+                        <td class="row-item"><%= item.title %></td>
+                        <td class="cart-movie-price row-item"><%= item.price %></td>
+                        <td><button type="button" class="btn btn-danger cart-delete-btn">Delete</button></td>
+                    </tr>
+                    <% subtotal += item.price; %>
+                <% }); 
+                    subtotal = subtotal.toFixed(2);
+                    let shipping = 5.99; 
+                    let total = parseFloat(subtotal) + parseFloat(shipping);
+                    total = total.toFixed(2); %>
+            </table>
+
+            <section id="cart-total">
+                <h2 class="total-header">Cart Total</h2>
+                <hr>
                 <ul>
                     <li><span class="total-label">Subtotal: $</span> <span id="subtotal"><%= subtotal %></span></li>
                     <li><span class="total-label">Shipping: $</span> <span id="shipping"><%= shipping %></span></li>
                     <li id="total-label2">Total: $ <span id="total"><%= total %></span></li>
                 </ul>
-            <% } %>
-            
-            <button id="refresh-cart-btn" class="btn btn-danger"><a href="/shoppingCart">Refresh Cart</a></button>
-        </section>
+                <button id="checkout-btn" class="btn btn-danger"><a href="/checkout">Checkout</a></button>
+                <br>
+                <br>
+            </section>
+        <% } %>
+        
     </div>
     
     <%- include("partials/bootstrap-footer.ejs") %> 

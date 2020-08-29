@@ -67,6 +67,9 @@ app.get("/updateCart", isAuthenticated, homeController.updateCart);
 // Route to display the shopping cart page
 app.get("/shoppingCart", isAuthenticated, homeController.displayCartPage);
 
+// Route to let user checkout from the shopping cart page
+app.get("/checkout", isAuthenticated, homeController.checkout);
+
 // Display the admin page
 app.get("/adminPage", isAuthenticated, isAdmin, function (req, res) {
   res.render("admin", { page_name: "adminPage" });

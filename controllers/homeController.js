@@ -2,7 +2,6 @@ const request = require("request");
 const pool = require("../dbPool.js");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-// const { parse } = require("dotenv/types");
 require("dotenv").config();
 const API_KEY = process.env.API_KEY;
 const saltRounds = 10;
@@ -171,6 +170,25 @@ exports.displayCartPage = async (req, res) => {
   res.render("shoppingcart", {
     cartContents: cartContents,
     page_name: "shoppingCart",
+  });
+};
+
+/**
+ * Handles the GET "/checkout" route
+ * Display the shopping cart with all the current user's cart items
+ */
+exports.checkout = async (req, res) => {
+  let user_id = req.session.name;
+  // Delete all movies in this user's cart
+  let sql = "DELETE FROM cart WHERE user_id = ?";
+  callDB(sql, user_id);
+
+  sql = "SELECT firstName FROM user WHERE user_id = ?";
+  let name = await callDB(sql, user_id);
+
+  res.render("checkout", {
+    page_name: "shoppingCart",
+    name: name[0].firstName,
   });
 };
 
