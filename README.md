@@ -1,6 +1,9 @@
 # CST336_Project
 
 ### [Website Link](https://lire20-project.herokuapp.com/)
+- Username: admin
+- Password: secret
+- Access to admin page: [Link](https://lire20-project.herokuapp.com/adminPage)
 
 
 # Team — PLEASE READ FIRST
